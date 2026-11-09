@@ -469,180 +469,220 @@
     canvas.height = window.innerHeight;
 
     let progresso = 0;
-    const duracao = 2000; // 2 segundos de animação
+    const duracao = 2200; // 2.2 segundos
     let tempoInicio = Date.now();
 
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
 
-    // Desenhar bode realista e malvado
+    // Desenhar bode MUITO mais realista tipo a imagem
     function desenharBode(x, y, escala) {
       ctx.save();
       ctx.translate(x, y);
       ctx.scale(escala, escala);
 
-      // Corpo (mais realista)
-      ctx.fillStyle = '#6B4423';
+      // Sombra atrás da cabeça
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
       ctx.beginPath();
-      ctx.ellipse(0, 0, 70, 55, 0, 0, Math.PI * 2);
+      ctx.ellipse(0, 40, 140, 60, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Cabeça (muito maior e mais proporcionada)
+      ctx.fillStyle = '#7a7a7a';
+      ctx.beginPath();
+      ctx.ellipse(0, 0, 95, 110, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Focinho/muzzle (mais escuro)
+      ctx.fillStyle = '#6a6a6a';
+      ctx.beginPath();
+      ctx.ellipse(35, 20, 45, 50, 0.1, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Nariz (preto e grande)
+      ctx.fillStyle = '#1a1a1a';
+      ctx.beginPath();
+      ctx.ellipse(65, 30, 20, 28, 0, 0, Math.PI * 2);
       ctx.fill();
       
-      // Patas traseiras
-      ctx.fillStyle = '#5A3A1F';
-      ctx.fillRect(-30, 45, 15, 50);
-      ctx.fillRect(15, 45, 15, 50);
-
-      // Pescoço
-      ctx.fillStyle = '#7B5433';
+      // Narinas
+      ctx.fillStyle = '#000';
       ctx.beginPath();
-      ctx.ellipse(45, -10, 25, 35, 0.15, 0, Math.PI * 2);
+      ctx.ellipse(60, 25, 6, 8, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.ellipse(70, 25, 6, 8, 0, 0, Math.PI * 2);
       ctx.fill();
 
-      // Cabeça (maior e mais realista)
-      ctx.fillStyle = '#8B6B47';
+      // Queixo/barba (textura)
+      ctx.fillStyle = '#5a5a5a';
       ctx.beginPath();
-      ctx.ellipse(65, -20, 38, 45, 0.1, 0, Math.PI * 2);
+      ctx.ellipse(30, 85, 70, 35, 0, 0, Math.PI * 2);
       ctx.fill();
+      
+      // Pelos da barba (linhas)
+      ctx.strokeStyle = '#3a3a3a';
+      ctx.lineWidth = 2;
+      for (let i = -8; i <= 8; i++) {
+        ctx.beginPath();
+        ctx.moveTo(-50 + i * 15, 85);
+        ctx.lineTo(-40 + i * 15, 120);
+        ctx.stroke();
+      }
 
-      // Queixo/barba
-      ctx.fillStyle = '#6B4B27';
-      ctx.beginPath();
-      ctx.ellipse(78, 8, 20, 15, 0, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Focinho
-      ctx.fillStyle = '#A0805F';
-      ctx.beginPath();
-      ctx.ellipse(85, 0, 18, 20, 0, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Nariz
-      ctx.fillStyle = '#3D2817';
-      ctx.beginPath();
-      ctx.ellipse(90, 5, 8, 10, 0, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Orelhas grandes
-      ctx.fillStyle = '#7B5433';
+      // Orelhas grandes (estilo bode real)
+      ctx.fillStyle = '#8a8a8a';
       // Orelha esquerda
       ctx.beginPath();
-      ctx.ellipse(45, -50, 16, 28, -0.3, 0, Math.PI * 2);
+      ctx.ellipse(-70, -20, 28, 50, -0.4, 0, Math.PI * 2);
       ctx.fill();
-      // Orelha direita
+      ctx.fillStyle = '#6a6a6a';
       ctx.beginPath();
-      ctx.ellipse(75, -55, 16, 28, 0.3, 0, Math.PI * 2);
+      ctx.ellipse(-70, -20, 18, 35, -0.4, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // Orelha direita
+      ctx.fillStyle = '#8a8a8a';
+      ctx.beginPath();
+      ctx.ellipse(70, -20, 28, 50, 0.4, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = '#6a6a6a';
+      ctx.beginPath();
+      ctx.ellipse(70, -20, 18, 35, 0.4, 0, Math.PI * 2);
       ctx.fill();
 
-      // Chifres grandes e retorcidos (aterrorizantes)
-      ctx.strokeStyle = '#2D1810';
-      ctx.lineWidth = 10;
+      // CHIFRES GIGANTES E ATERRADORES (principais)
+      ctx.strokeStyle = '#2a2a2a';
+      ctx.lineWidth = 28;
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
       
-      // Chifre esquerdo
+      // Chifre esquerdo (retorcido e grande)
       ctx.beginPath();
-      ctx.moveTo(35, -60);
-      ctx.quadraticCurveTo(15, -100, 10, -130);
-      ctx.quadraticCurveTo(5, -145, 15, -150);
+      ctx.moveTo(-85, -85);
+      ctx.quadraticCurveTo(-140, -130, -160, -180);
+      ctx.quadraticCurveTo(-175, -210, -150, -220);
       ctx.stroke();
       
-      // Chifre direito
+      // Chifre direito (retorcido e grande)
       ctx.beginPath();
-      ctx.moveTo(75, -65);
-      ctx.quadraticCurveTo(100, -110, 110, -140);
-      ctx.quadraticCurveTo(120, -155, 110, -160);
+      ctx.moveTo(85, -85);
+      ctx.quadraticCurveTo(140, -130, 160, -180);
+      ctx.quadraticCurveTo(175, -210, 150, -220);
       ctx.stroke();
 
-      // Olhos malvados (vermelhos)
-      ctx.fillStyle = '#FF3333';
+      // Destaque dos chifres (mais realista)
+      ctx.strokeStyle = '#4a4a4a';
+      ctx.lineWidth = 10;
       ctx.beginPath();
-      ctx.arc(55, -25, 8, 0, Math.PI * 2);
+      ctx.moveTo(-85, -85);
+      ctx.quadraticCurveTo(-140, -130, -160, -180);
+      ctx.quadraticCurveTo(-175, -210, -150, -220);
+      ctx.stroke();
+      
+      ctx.beginPath();
+      ctx.moveTo(85, -85);
+      ctx.quadraticCurveTo(140, -130, 160, -180);
+      ctx.quadraticCurveTo(175, -210, 150, -220);
+      ctx.stroke();
+
+      // OLHOS VERMELHOS MALÉVOLOS (maiores)
+      ctx.fillStyle = '#cc0000';
+      ctx.beginPath();
+      ctx.ellipse(-35, -20, 22, 28, 0, 0, Math.PI * 2);
       ctx.fill();
       ctx.beginPath();
-      ctx.arc(75, -30, 8, 0, Math.PI * 2);
+      ctx.ellipse(35, -20, 22, 28, 0, 0, Math.PI * 2);
       ctx.fill();
 
-      // Pupilas (pretas e focadas)
+      // Pupilas (pretas, focadas e malévolas)
       ctx.fillStyle = '#000';
       ctx.beginPath();
-      ctx.arc(58, -22, 5, 0, Math.PI * 2);
+      ctx.ellipse(-30, -15, 12, 16, 0, 0, Math.PI * 2);
       ctx.fill();
       ctx.beginPath();
-      ctx.arc(78, -27, 5, 0, Math.PI * 2);
+      ctx.ellipse(40, -15, 12, 16, 0, 0, Math.PI * 2);
       ctx.fill();
 
-      // Sobrancelhas malvadas
-      ctx.strokeStyle = '#4D2817';
-      ctx.lineWidth = 4;
-      ctx.lineCap = 'round';
-      // Esquerda
+      // Brilho nos olhos (aspecto sinistro)
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
       ctx.beginPath();
-      ctx.moveTo(48, -35);
-      ctx.quadraticCurveTo(58, -42, 68, -38);
-      ctx.stroke();
-      // Direita
+      ctx.arc(-28, -22, 5, 0, Math.PI * 2);
+      ctx.fill();
       ctx.beginPath();
-      ctx.moveTo(68, -40);
-      ctx.quadraticCurveTo(78, -47, 88, -42);
-      ctx.stroke();
+      ctx.arc(42, -22, 5, 0, Math.PI * 2);
+      ctx.fill();
 
-      // Boca (expressão agressiva)
-      ctx.strokeStyle = '#3D2817';
+      // Sobrancelhas malvadas (muito prominentes)
+      ctx.fillStyle = '#3a3a3a';
+      ctx.beginPath();
+      ctx.ellipse(-35, -50, 35, 12, -0.3, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.ellipse(35, -50, 35, 12, 0.3, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Rugas/vincos na testa (expressão furiosa)
+      ctx.strokeStyle = '#5a5a5a';
       ctx.lineWidth = 3;
-      ctx.beginPath();
-      ctx.moveTo(85, 10);
-      ctx.quadraticCurveTo(90, 18, 95, 15);
-      ctx.stroke();
-
-      // Cauda
-      ctx.strokeStyle = '#5A3A1F';
-      ctx.lineWidth = 12;
-      ctx.beginPath();
-      ctx.moveTo(-50, 20);
-      ctx.quadraticCurveTo(-80, -20, -85, -50);
-      ctx.stroke();
+      for (let i = -3; i <= 3; i++) {
+        ctx.beginPath();
+        ctx.moveTo(i * 20, -60);
+        ctx.quadraticCurveTo(i * 20 + 10, -40, i * 20 + 5, -20);
+        ctx.stroke();
+      }
 
       ctx.restore();
     }
 
-    // Desenhar vidro quebrado realista
+    // Desenhar vidro quebrado ultra-realista
     function desenharRachaduras(prog) {
-      // Fundo de vidro
-      ctx.fillStyle = `rgba(200, 200, 200, ${0.1 * prog})`;
+      // Vidro com textura
+      ctx.fillStyle = `rgba(220, 220, 230, ${0.08 * prog})`;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Rachaduras radiantes principais
-      const numRachadurasPrincipais = 20;
+      // Efeito de impacto radiante
+      const numRachadurasPrincipais = 24;
       
       for (let i = 0; i < numRachadurasPrincipais; i++) {
         const angulo = (i / numRachadurasPrincipais) * Math.PI * 2;
-        const maxComprim = 500;
+        const maxComprim = 550;
         const comprimAtual = maxComprim * prog;
         
         const x2 = centerX + Math.cos(angulo) * comprimAtual;
         const y2 = centerY + Math.sin(angulo) * comprimAtual;
         
-        // Rachadura principal
-        ctx.strokeStyle = `rgba(180, 180, 200, ${0.8 * prog})`;
-        ctx.lineWidth = 3 + Math.random() * 2;
+        // Rachadura principal (mais espessa no início)
+        const espessura = 3 + Math.random() * 2;
+        ctx.strokeStyle = `rgba(180, 180, 200, ${0.7 * prog})`;
+        ctx.lineWidth = espessura;
+        ctx.lineCap = 'round';
         ctx.beginPath();
         ctx.moveTo(centerX, centerY);
         ctx.lineTo(x2, y2);
         ctx.stroke();
 
-        // Rachaduras secundárias menores
-        for (let j = 0; j < 2; j++) {
-          const distSecundaria = comprimAtual * (0.5 + Math.random() * 0.5);
+        // Brilho nas rachaduras
+        ctx.strokeStyle = `rgba(255, 255, 255, ${0.3 * prog})`;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(centerX + 2, centerY);
+        ctx.lineTo(x2 + 2, y2);
+        ctx.stroke();
+
+        // Ramificações secundárias com efeito realista
+        for (let j = 0; j < 3; j++) {
+          const distSecundaria = comprimAtual * (0.4 + Math.random() * 0.6);
           const xSec = centerX + Math.cos(angulo) * distSecundaria;
           const ySec = centerY + Math.sin(angulo) * distSecundaria;
 
-          const anguloSec = angulo + (Math.random() - 0.5) * 0.4;
-          const comprimSec = comprimAtual * 0.4 * Math.random();
+          const anguloSec = angulo + (Math.random() - 0.5) * 0.6;
+          const comprimSec = comprimAtual * (0.3 + Math.random() * 0.4);
           
           const xSecFim = xSec + Math.cos(anguloSec) * comprimSec;
           const ySecFim = ySec + Math.sin(anguloSec) * comprimSec;
 
-          ctx.strokeStyle = `rgba(160, 160, 180, ${0.5 * prog})`;
+          ctx.strokeStyle = `rgba(160, 160, 180, ${0.4 * prog})`;
           ctx.lineWidth = 1.5;
           ctx.beginPath();
           ctx.moveTo(xSec, ySec);
@@ -651,17 +691,30 @@
         }
       }
 
-      // Padrão de vidro temperado (pequenos padrões)
-      ctx.strokeStyle = `rgba(200, 200, 220, ${0.3 * prog})`;
-      ctx.lineWidth = 1;
-      for (let i = 0; i < Math.floor(prog * 100); i++) {
+      // Fragmentos de vidro em volta
+      ctx.fillStyle = `rgba(200, 200, 220, ${0.4 * prog})`;
+      for (let i = 0; i < Math.floor(prog * 150); i++) {
         const x = Math.random() * canvas.width;
         const y = Math.random() * canvas.height;
         const distCentro = Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2));
         
-        if (distCentro < 500 * prog) {
+        if (distCentro < 550 * prog) {
+          const tamanho = Math.random() * 8 + 2;
+          ctx.fillRect(x, y, tamanho, tamanho * 2);
+        }
+      }
+
+      // Padrão de vidro temperado
+      ctx.strokeStyle = `rgba(180, 180, 200, ${0.2 * prog})`;
+      ctx.lineWidth = 0.5;
+      for (let i = 0; i < Math.floor(prog * 200); i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        const distCentro = Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2));
+        
+        if (distCentro < 550 * prog) {
           ctx.beginPath();
-          ctx.arc(x, y, Math.random() * 3, 0, Math.PI * 2);
+          ctx.arc(x, y, Math.random() * 4, 0, Math.PI * 2);
           ctx.stroke();
         }
       }
@@ -672,32 +725,36 @@
       const decorrido = agora - tempoInicio;
       progresso = Math.min(decorrido / duracao, 1);
 
-      // Limpar canvas com efeito de flash
+      // Limpar canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Flash branco/vermelho de impacto
-      if (progresso < 0.4) {
-        const intensidade = Math.max(0, (1 - progresso / 0.4) * 0.3);
-        ctx.fillStyle = `rgba(255, 100, 100, ${intensidade})`;
+      // Flash branco/vermelho de impacto (mais dramático)
+      if (progresso < 0.35) {
+        const intensidade = Math.max(0, (1 - progresso / 0.35) * 0.35);
+        ctx.fillStyle = `rgba(255, 100, 80, ${intensidade})`;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Flash branco secundário
+        ctx.fillStyle = `rgba(255, 255, 255, ${intensidade * 0.6})`;
         ctx.fillRect(0, 0, canvas.width, canvas.height);
       }
 
       // Rachaduras
       desenharRachaduras(progresso);
 
-      // Bode entrando pela esquerda
-      const posX = -350 + progresso * 600;
-      const escala = 0.4 + progresso * 0.6;
-      desenharBode(posX, canvas.height * 0.45, escala);
+      // Bode entrando pela esquerda com força
+      const posX = -400 + progresso * 700;
+      const escala = 0.35 + progresso * 0.65;
+      desenharBode(posX, canvas.height * 0.48, escala);
 
       // Continuar animação
       if (progresso < 1) {
         requestAnimationFrame(animar);
       } else {
-        // Deixar visível mais um tempo antes de sumir
+        // Deixar visível mais tempo
         setTimeout(() => {
           container.style.display = 'none';
-        }, 800);
+        }, 1000);
       }
     }
 
