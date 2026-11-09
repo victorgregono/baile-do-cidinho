@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Baile do MC Cidinho - 05/12 | Alto do Bode convida</title>
+<meta name="description" content="Alto do Bode convida para o baile do MC Cidinho no dia 05/12. Controle as vagas do onibus e confirme seu pagamento.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#141017;
+    --ink-2:#241d2c;
+    --paper:#faf7f2;
+    --card:#ffffff;
+    --line:#e7ded2;
+    --muted:#7a6f7d;
+    --gold:#d4a03c;
+    --gold-deep:#a9761d;
+    --purple:#4a2c6b;
+    --purple-soft:#6b418f;
+    --green:#1f7a52;
+    --green-soft:#e4f3ec;
+    --amber:#9a6b12;
+    --amber-soft:#fdf1d8;
+    --radius:18px;
+    --shadow:0 10px 30px -12px rgba(36,20,48,.22);
+    --shadow-lg:0 24px 60px -22px rgba(36,20,48,.35);
+  }
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Outfit',system-ui,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block}
+  button,input{font:inherit;color:inherit}
+  a{color:var(--purple-soft)}
+
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+
+  /* ---------------- HERO / PROPAGANDA ---------------- */
+  .hero{
+    position:relative;
+    isolation:isolate;
+    background:
+      radial-gradient(120% 90% at 78% 8%, #6b3a92 0%, rgba(107,58,146,0) 58%),
+      radial-gradient(90% 80% at 12% 88%, #b8471f 0%, rgba(184,71,31,0) 62%),
+      linear-gradient(168deg, #2b1839 0%, #1a0f24 58%, #120a19 100%);
+    color:#fff;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;inset:0;z-index:-1;
+    background:url("assets/poster.jpg") center/cover no-repeat;
+    opacity:.34;
+    filter:saturate(1.15);
+  }
+  .hero::before{
+    content:"";
+    position:absolute;inset:0;z-index:-1;
+    background:linear-gradient(180deg, rgba(20,12,28,.72) 0%, rgba(20,12,28,.42) 38%, rgba(18,10,25,.86) 100%);
+  }
+  .hero-inner{
+    padding:58px 0 44px;
+    display:grid;
+    grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
+    gap:44px;
+    align-items:center;
+  }
+  .badge{
+    display:inline-flex;align-items:center;gap:9px;
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.2);
+    backdrop-filter:blur(6px);
+    padding:7px 15px;border-radius:999px;
+    font-size:.78rem;letter-spacing:.11em;text-transform:uppercase;font-weight:600;
+    color:#f4e6cd;
+  }
+  .badge svg{width:15px;height:15px;flex:none}
+  h1{
+    font-size:clamp(2.3rem,6.2vw,4.1rem);
+    line-height:1.02;
+    margin:20px 0 14px;
+    font-weight:700;
+    letter-spacing:-.02em;
+  }
+  h1 .hl{
+    display:block;
+    color:var(--gold);
+    font-weight:500;
+  }
+  .lead{
+    font-size:clamp(1rem,2.2vw,1.16rem);
+    color:#e6dced;
+    max-width:46ch;
+    margin:0 0 26px;
+  }
+  .lead strong{color:#fff;font-weight:600}
+  .hero-meta{
+    display:flex;flex-wrap:wrap;gap:10px;
+    margin-bottom:30px;
+  }
+  .chip{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.16);
+    padding:8px 14px;border-radius:12px;
+    font-size:.88rem;color:#f0e6f5;
+  }
+  .chip svg{width:16px;height:16px;color:var(--gold);flex:none}
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .btn{
+    border:0;border-radius:13px;
+    padding:13px 24px;
+    font-weight:600;font-size:.97rem;
+    cursor:pointer;
+    display:inline-flex;align-items:center;gap:9px;
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+    text-decoration:none;
+  }
+  .btn:hover{transform:translateY(-2px)}
+  .btn:active{transform:translateY(0)}
+  .btn svg{width:17px;height:17px;flex:none}
+  .btn-gold{
+    background:linear-gradient(180deg,#e8b551 0%, var(--gold) 100%);
+    color:#2a1a06;
+    box-shadow:0 12px 26px -12px rgba(212,160,60,.85);
+  }
+  .btn-gold:hover{box-shadow:0 16px 32px -12px rgba(212,160,60,.95)}
+  .btn-ghost{
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.24);
+    color:#fff;
+  }
+  .btn-ghost:hover{background:rgba(255,255,255,.15)}
+  .btn-dark{background:var(--ink);color:#fff}
+  .btn-dark:hover{background:#2a2133}
+  .btn-line{
+    background:transparent;border:1px solid var(--line);color:var(--ink);
+  }
+  .btn-line:hover{border-color:#cfc2b4;background:#fff}
+  .btn-sm{padding:8px 14px;font-size:.86rem;border-radius:10px}
+  .btn[disabled]{opacity:.5;cursor:not-allowed;transform:none}
+
+  /* Poster card */
+  .poster-card{
+    position:relative;border-radius:var(--radius);
+    overflow:hidden;
+    box-shadow:var(--shadow-lg);
+    border:1px solid rgba(255,255,255,.16);
+    background:#1a0f24;
+  }
+  .poster-card img{width:100%;height:auto;display:block}
+  .poster-card figcaption{
+    position:absolute;left:0;right:0;bottom:0;
+    padding:30px 20px 16px;
+    background:linear-gradient(180deg, rgba(18,10,25,0) 0%, rgba(18,10,25,.93) 72%);
+    font-size:.84rem;color:#e3d6ea;letter-spacing:.02em;
+  }
+
+  /* ---------------- SECTION ---------------- */
+  section{scroll-margin-top:20px}
+  .section{padding:64px 0}
+  .section-head{max-width:62ch;margin-bottom:30px}
+  .eyebrow{
+    font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;
+    font-weight:700;color:var(--gold-deep);margin:0 0 10px;
+  }
+  h2{
+    font-size:clamp(1.65rem,3.6vw,2.35rem);
+    line-height:1.14;margin:0 0 10px;font-weight:600;letter-spacing:-.015em;
+  }
+  .section-head p{margin:0;color:var(--muted);font-size:1.02rem}
+
+  /* ---------------- APP GRID ---------------- */
+  .app-grid{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);
+    gap:26px;align-items:start;
+  }
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:26px;
+  }
+  .card-title{
+    display:flex;align-items:center;gap:10px;
+    font-size:1.12rem;font-weight:600;margin:0 0 6px;
+  }
+  .card-title svg{width:19px;height:19px;color:var(--purple-soft);flex:none}
+  .card-sub{color:var(--muted);font-size:.9rem;margin:0 0 20px}
+
+  /* Form */
+  .field{margin-bottom:16px}
+  label.field-label{
+    display:block;font-size:.82rem;font-weight:600;
+    letter-spacing:.03em;text-transform:uppercase;color:var(--muted);
+    margin-bottom:7px;
+  }
+  .input, select.input{
+    width:100%;
+    border:1px solid var(--line);
+    background:#fffdfb;
+    border-radius:12px;
+    padding:13px 15px;
+    font-size:1rem;
+    transition:border-color .18s, box-shadow .18s;
+  }
+  .input:focus{
+    outline:none;
+    border-color:var(--purple-soft);
+    box-shadow:0 0 0 3px rgba(107,65,143,.14);
+  }
+  .input::placeholder{color:#b5a9ba}
+  .form-row{display:flex;gap:10px}
+  .form-row .input{flex:1}
+
+  /* Status pill */
+  .pill{
+    display:inline-flex;align-items:center;gap:7px;
+    padding:4px 11px;border-radius:999px;
+    font-size:.76rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+    white-space:nowrap;
+  }
+  .pill .dot{width:7px;height:7px;border-radius:50%;background:currentColor;flex:none}
+  .pill-pag{background:var(--green-soft);color:var(--green)}
+  .pill-pen{background:var(--amber-soft);color:var(--amber)}
+
+  /* Stats */
+  .stats{
+    display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:12px;margin-bottom:22px;
+  }
+  .stat{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:14px 16px;
+  }
+  .stat-num{
+    font-family:'JetBrains Mono',monospace;
+    font-size:1.75rem;font-weight:500;line-height:1.1;
+    letter-spacing:-.02em;
+  }
+  .stat-lab{
+    font-size:.76rem;text-transform:uppercase;letter-spacing:.09em;
+    color:var(--muted);font-weight:600;margin-top:3px;
+  }
+  .stat.pago .stat-num{color:var(--green)}
+  .stat.pend .stat-num{color:var(--amber)}
+
+  /* Progress */
+  .progress{
+    height:9px;border-radius:999px;background:#efe7dc;
+    overflow:hidden;margin:0 0 22px;
+  }
+  .progress-fill{
+    height:100%;border-radius:999px;
+    background:linear-gradient(90deg,var(--gold) 0%, #e0b755 100%);
+    width:0;transition:width .5s cubic-bezier(.4,0,.2,1);
+  }
+
+  /* List */
+  .people-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+  .person{
+    display:flex;align-items:center;gap:13px;
+    padding:13px 15px;
+    border:1px solid var(--line);
+    border-radius:13px;
+    background:#fffdfb;
+    transition:border-color .18s, transform .18s, box-shadow .18s;
+  }
+  .person:hover{border-color:#d6c9ba;transform:translateY(-1px);box-shadow:0 6px 16px -10px rgba(36,20,48,.3)}
+  .person.pago{background:#fbfdfb}
+  .avatar{
+    width:38px;height:38px;border-radius:11px;flex:none;
+    display:grid;place-items:center;
+    font-weight:700;font-size:.95rem;
+    background:linear-gradient(140deg,#5d3680,#a8471f);
+    color:#fff;
+  }
+  .person.pago .avatar{background:linear-gradient(140deg,#2f8f64,#1f7a52)}
+  .person-info{flex:1;min-width:0}
+  .person-name{font-weight:600;font-size:.99rem;line-height:1.3;word-break:break-word}
+  .person-time{font-family:'JetBrains Mono',monospace;font-size:.74rem;color:var(--muted);margin-top:2px}
+  .person-actions{display:flex;gap:7px;flex:none}
+
+  /* Admin */
+  .admin-panel{
+    margin-top:22px;
+    border:1px solid var(--line);
+    border-radius:16px;
+    background:var(--paper);
+    overflow:hidden;
+  }
+  .admin-toggle{
+    width:100%;
+    display:flex;align-items:center;gap:11px;
+    background:transparent;border:0;
+    padding:17px 20px;
+    cursor:pointer;text-align:left;
+    font-weight:600;font-size:.98rem;
+  }
+  .admin-toggle:hover{background:#f3ede3}
+  .admin-toggle svg{width:18px;height:18px;color:var(--purple-soft);flex:none}
+  .admin-toggle .chev{margin-left:auto;width:16px;height:16px;color:var(--muted);transition:transform .25s}
+  .admin-panel.open .chev{transform:rotate(180deg)}
+  .admin-body{padding:0 20px 20px;display:none}
+  .admin-panel.open .admin-body{display:block}
+
+  .admin-locked{
+    display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;
+  }
+  .admin-locked .field{flex:1;min-width:180px;margin-bottom:0}
+
+  .unlocked-bar{
+    display:flex;align-items:center;gap:9px;
+    background:var(--green-soft);color:var(--green);
+    border:1px solid #bfe0d0;
+    padding:10px 14px;border-radius:12px;
+    font-size:.87rem;font-weight:600;margin-bottom:16px;
+  }
+  .unlocked-bar svg{width:16px;height:16px;flex:none}
+
+  .tool-row{
+    display:flex;gap:10px;flex-wrap:wrap;
+    padding-top:16px;margin-top:16px;
+    border-top:1px dashed var(--line);
+  }
+
+  /* Config (no-code) */
+  .config-box{
+    margin-top:22px;
+    border:1px solid var(--line);
+    border-radius:16px;
+    background:#fffdfb;
+    overflow:hidden;
+  }
+  .config-box summary{
+    padding:15px 20px;cursor:pointer;font-weight:600;font-size:.92rem;
+    display:flex;align-items:center;gap:10px;list-style:none;
+  }
+  .config-box summary::-webkit-details-marker{display:none}
+  .config-box summary:hover{background:var(--paper)}
+  .config-box summary svg{width:17px;height:17px;color:var(--purple-soft);flex:none}
+  .config-body{padding:0 20px 20px;font-size:.92rem;color:var(--ink-2)}
+  .config-body ol{margin:0 0 16px;padding-left:20px}
+  .config-body li{margin-bottom:8px}
+  .config-body code{
+    font-family:'JetBrains Mono',monospace;font-size:.82em;
+    background:#f3ede3;padding:2px 6px;border-radius:5px;
+  }
+  .config-body pre{
+    background:#231a2c;color:#e9e2ef;
+    padding:13px 15px;border-radius:10px;
+    overflow-x:auto;
+    font-family:'JetBrains Mono',monospace;font-size:.78rem;
+    line-height:1.65;margin:0 0 14px;
+  }
+  .config-body pre .k{color:var(--gold)}
+  .config-body pre .s{color:#8fd6a8}
+
+  .mode-picker{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:16px}
+  .mode-btn{
+    flex:1;min-width:130px;
+    border:1px solid var(--line);background:#fff;
+    border-radius:12px;padding:11px 13px;cursor:pointer;text-align:left;
+    transition:all .18s;
+  }
+  .mode-btn:hover{border-color:#cfc2b4}
+  .mode-btn.active{
+    border-color:var(--purple-soft);
+    background:rgba(107,65,143,.06);
+    box-shadow:0 0 0 3px rgba(107,65,143,.1);
+  }
+  .mode-btn b{display:block;font-size:.92rem;margin-bottom:2px}
+  .mode-btn span{font-size:.78rem;color:var(--muted)}
+
+  /* Toast */
+  .toast-wrap{
+    position:fixed;left:50%;transform:translateX(-50%);
+    bottom:26px;z-index:60;
+    display:flex;flex-direction:column;gap:9px;align-items:center;
+    pointer-events:none;width:min(92vw,420px);
+  }
+  .toast{
+    background:var(--ink);color:#fff;
+    padding:12px 18px;border-radius:12px;
+    font-size:.92rem;font-weight:500;
+    box-shadow:var(--shadow-lg);
+    display:flex;align-items:center;gap:10px;
+    animation:toastIn .32s cubic-bezier(.2,.9,.3,1.2);
+  }
+  .toast svg{width:17px;height:17px;flex:none}
+  .toast.ok svg{color:#6ee7a8}
+  .toast.err svg{color:#ff9b9b}
+  @keyframes toastIn{from{opacity:0;transform:translateY(14px) scale(.96)}to{opacity:1;transform:none}}
+
+  .status-line{
+    display:flex;align-items:center;gap:8px;
+    font-size:.8rem;color:var(--muted);
+    font-family:'JetBrains Mono',monospace;
+    margin-bottom:16px;
+  }
+  .status-line .led{width:8px;height:8px;border-radius:50%;background:var(--green);flex:none}
+  .status-line.off .led{background:#c95050}
+  .status-line.busy .led{background:var(--gold);animation:pulse 1s infinite}
+  @keyframes pulse{50%{opacity:.3}}
+
+  .empty{
+    text-align:center;padding:34px 20px;color:var(--muted);
+    border:1px dashed var(--line);border-radius:14px;
+  }
+  .empty svg{width:34px;height:34px;color:#cfc2b4;margin:0 auto 10px}
+
+  footer{
+    border-top:1px solid var(--line);
+    background:#fffdfb;
+    padding:34px 0;margin-top:20px;
+  }
+  .foot-grid{
+    display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
+    align-items:center;
+    font-size:.86rem;color:var(--muted);
+  }
+  .foot-grid strong{color:var(--ink)}
+
+  @media (max-width:880px){
+    .hero-inner{grid-template-columns:1fr;gap:32px;padding:44px 0 38px}
+    .app-grid{grid-template-columns:1fr}
+    .stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+  }
+  @media (max-width:520px){
+    .section{padding:44px 0}
+    .card{padding:20px}
+    .stats{grid-template-columns:1fr 1fr}
+    .form-row{flex-direction:column}
+    .btn{width:100%;justify-content:center}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== PROPAGANDA ===================== -->
+<header class="hero">
+  <div class="wrap hero-inner">
+    <div>
+      <span class="badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+        Alto do Bode convida
+      </span>
+
+      <h1>
+        Baile do
+        <span class="hl">MC Cidinho</span>
+      </h1>
+
+      <p class="lead">
+        Dia <strong>05 de dezembro</strong> a gente <strong>curte o baile do MC Cidinho</strong>,
+        vira a noite e ainda tem <strong>muito funk</strong>. Data dupla de aniversário:
+        <strong>Ivan</strong> e <strong>Stock</strong> woke up on the mic. Vem de verdade.
+      </p>
+
+      <div class="hero-meta">
+        <span class="chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          05/12 - vira a noite
+        </span>
+        <span class="chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          Aniversario Ivan + Stock
+        </span>
+        <span class="chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          Funk a noite toda
+        </span>
+      </div>
+
+      <div class="cta-row">
+        <a href="#controle" class="btn btn-gold">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          Garantir meu lugar no onibus
+        </a>
+        <a href="#config" class="btn btn-ghost">Como publicar (de graça)</a>
+      </div>
+    </div>
+
+    <figure class="poster-card">
+      <img src="assets/poster.jpg" alt="Arte do baile: caixa de som, luzes douradas e a multidao levantando as maos">
+      <figcaption>Alto do Bode &middot; 05/12 &middot; MC Cidinho &middot; at&eacute; a madrugada</figcaption>
+    </figure>
+  </div>
+</header>
+
+<!-- ===================== CONTROLE ===================== -->
+<section class="section" id="controle">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Controle do onibus</p>
+      <h2>Seu nome na lista, status na hora</h2>
+      <p>
+        Voce coloca o nome, fica <strong>pendente</strong> e o administrador marca como
+        <strong>pago</strong> quando confirmar. Todo mundo ve a mesma lista atualizada.
+      </p>
+    </div>
+
+    <div class="app-grid">
+      <!-- COLUNA 1: CADASTRO -->
+      <div>
+        <div class="card">
+          <h3 class="card-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>
+            Entrar na lista
+          </h3>
+          <p class="card-sub">Escreva seu nome completo. O status comeca como pendente.</p>
+
+          <form id="form-inserir" autocomplete="off">
+            <div class="field">
+              <label class="field-label" for="input-nome">Nome completo</label>
+              <input class="input" id="input-nome" name="nome" type="text" placeholder="Ex: Joao da Silva" maxlength="80" required>
+            </div>
+            <div class="form-row">
+              <input class="input" id="input-obs" name="observacao" type="text" placeholder="Observacao (opcional) - ex: ponto da praca" maxlength="120">
+              <button class="btn btn-dark" type="submit" id="btn-inserir">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+                Entrar
+              </button>
+            </div>
+          </form>
+
+          <div class="status-line" id="status-linha" style="margin-top:18px;margin-bottom:0">
+            <span class="led"></span>
+            <span id="status-texto">Conectando...</span>
+          </div>
+        </div>
+
+        <!-- CONFIG NO-CODE -->
+        <details class="config-box" id="config" hidden="true">
+          <summary>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6h.09A1.65 1.65 0 0 0 10 3.09V3a2 2 0 1 1 4 0v.09A1.65 1.65 0 0 0 15 4.6a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9v.09a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            Modo de dados: onde a lista fica gravada
+          </summary>
+          <div class="config-body">
+            <p style="margin:0 0 14px">
+              Por padrao a pagina abre em <b>modo demonstracao</b> (dados so neste navegador).
+              Escolha um dos dois modos de baixo para a lista ficar gravada de verdade e visivel
+              para todo mundo no mesmo link.
+            </p>
+
+            <div class="mode-picker">
+              <button type="button" class="mode-btn" data-mode="demo">
+                <b>Modo demonstracao</b>
+                <span>Testa agora, sem configurar nada</span>
+              </button>
+              <button type="button" class="mode-btn" data-mode="sheets">
+                <b>Google Sheets</b>
+                <span>Gratis, duradouro, recomendado</span>
+              </button>
+              <button type="button" class="mode-btn" data-mode="airtable">
+                <b>Airtable</b>
+                <span>Gratis, ja tem conta em varios lugares</span>
+              </button>
+            </div>
+
+            <div id="modo-sheets">
+              <ol>
+                <li>Crie a planilha em <code>https://sheets.new</code></li>
+                <li>Abra <b>Extensoes &gt; Apps Script</b> e cole o arquivo <code>Code.gs</code> que veio junto desta pagina</li>
+                <li>Troque a senha do admin em <code>SENHA_ADM</code></li>
+                <li><b>Implantar &gt; Nova implantacao &gt; Web app</b> &mdash; Executar como <i>Eu</i>, acesso <i>Qualquer pessoa</i></li>
+                <li>Copie a URL que termina em <code>/exec</code> e cole abaixo</li>
+              </ol>
+              <div class="field">
+                <label class="field-label" for="cfg-sheets-url">URL do Apps Script (/exec)</label>
+                <input class="input" id="cfg-sheets-url" type="url" placeholder="https://script.google.com/macros/s/AKfy.../exec">
+              </div>
+              <button class="btn btn-dark btn-sm" type="button" id="btn-salvar-sheets">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg>
+                Salvar e conectar
+              </button>
+            </div>
+
+            <div id="modo-airtable" style="display:none">
+              <ol>
+                <li>Crie uma base em <code>https://airtable.com</code> (plano gratis)</li>
+                <li>Crie a tabela <code>Passageiros</code> com os campos: <code>nome</code>, <code>status</code>, <code>observacao</code>, <code>criado_em</code></li>
+                <li><b>Create personal access token</b> com escopo <code>data.records:write</code></li>
+                <li>Copie o <b>Base ID</b> (comeca com <code>app</code>) e cole abaixo</li>
+              </ol>
+              <div class="field">
+                <label class="field-label" for="cfg-at-token">Personal access token</label>
+                <input class="input" id="cfg-at-token" type="password" placeholder="patXXXXXXXXXXXXXX">
+              </div>
+              <div class="field">
+                <label class="field-label" for="cfg-at-base">Base ID</label>
+                <input class="input" id="cfg-at-base" type="text" placeholder="appXXXXXXXXXXXXXX">
+              </div>
+              <div class="field">
+                <label class="field-label" for="cfg-at-table">Nome da tabela</label>
+                <input class="input" id="cfg-at-table" type="text" value="Passageiros">
+              </div>
+              <button class="btn btn-dark btn-sm" type="button" id="btn-salvar-airtable">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg>
+                Salvar e conectar
+              </button>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <!-- COLUNA 2: LISTA + ADMIN -->
+      <div class="card">
+        <h3 class="card-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Lista do onibus
+        </h3>
+        <p class="card-sub" id="lista-sub">Quem ja entrou na lista</p>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-num" id="stat-total">0</div>
+            <div class="stat-lab">Total</div>
+          </div>
+          <div class="stat pend">
+            <div class="stat-num" id="stat-pend">0</div>
+            <div class="stat-lab">Pendentes</div>
+          </div>
+          <div class="stat pago">
+            <div class="stat-num" id="stat-pago">0</div>
+            <div class="stat-lab">Pagos</div>
+          </div>
+        </div>
+
+        <div class="progress"><div class="progress-fill" id="progress-fill"></div></div>
+
+        <ul class="people-list" id="people-list"></ul>
+
+        <!-- ADMIN -->
+        <div class="admin-panel" id="admin-panel">
+          <button class="admin-toggle" type="button" id="admin-toggle" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Area do administrador
+            <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+
+          <div class="admin-body">
+            <div id="admin-locked">
+              <p class="card-sub" style="margin-bottom:14px">Digite a senha para liberar o controle de pagamento.</p>
+              <div class="admin-locked">
+                <div class="field">
+                  <label class="field-label" for="input-senha">Senha do admin</label>
+                  <input class="input" id="input-senha" type="password" placeholder="Senha" autocomplete="current-password">
+                </div>
+                <button class="btn btn-dark" type="button" id="btn-desbloquear">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                  Desbloquear
+                </button>
+              </div>
+            </div>
+
+            <div id="admin-unlocked" style="display:none">
+              <div class="unlocked-bar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+                Administrador desbloqueado
+              </div>
+
+              <div class="tool-row">
+                <button class="btn btn-line btn-sm" type="button" id="btn-exportar">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5M12 15V3"/></svg>
+                  Exportar CSV
+                </button>
+                <button class="btn btn-line btn-sm" type="button" id="btn-atualizar">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+                  Atualizar lista
+                </button>
+                <button class="btn btn-line btn-sm" type="button" id="btn-limpar">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>
+                  Limpar lista
+                </button>
+                <button class="btn btn-line btn-sm" type="button" id="btn-bloquear">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                  Bloquear
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <strong>Baile do MC Cidinho</strong> &middot; 05/12 &middot; Alto do Bode convida<br>
+      Aniversario do Ivan e do Stock, funk ate o sol.
+    </div>
+    <div>
+      Controle do onibus &middot; pagina estatica, sem banco de dados
+    </div>
+  </div>
+</footer>
+
+<div class="toast-wrap" id="toasts"></div>
+
+<script>
+/* ==================================================================
+   CONFIGURACAO - mexa aqui
+   ================================================================== */
+const CONFIG = {
+  // Modo de dados: 'demo' | 'sheets' | 'airtable'
+  modo: 'sheets',
+
+  // Google Apps Script (recomendado). Cole a URL que termina em /exec
+  appsScriptUrl: 'https://script.google.com/macros/s/AKfycbxdGQ7Hw84VRN_D3hrQz3ETda-8eyC4abLX0YM42sniZ_7R-3AgpaL54Q0k8O_zcmnq/exec',
+
+  // Airtable
+  airtableToken: '',
+  airtableBaseId: '',
+  airtableTable: 'Passageiros',
+
+  // Senha do administrador
+  adminSenha: 'cidinho2026',
+
+  // Quanto tempo entre atualizacoes automaticas da lista (ms)
+  intervaloRefresh: 20000
+};
+
+/* ==================================================================
+   ESTADO
+   ================================================================== */
+const CHAVE_CFG = 'baile_cidinho_config_v1';
+const CHAVE_LISTA = 'baile_cidinho_lista_v1';
+
+let config = Object.assign({}, CONFIG, carregarConfigSalvo());
+let pessoas = [];
+let adminLiberado = false;
+let modoAtual = config.modo;
+lettimerRefresh = null;
+
+/* ==================================================================
+   UTILIDADES
+   ================================================================== */
+function $(sel){ return document.querySelector(sel); }
+
+function salvarConfigSalvo(){
+  const dados = {
+    modo: config.modo,
+    appsScriptUrl: config.appsScriptUrl,
+    airtableToken: config.airtableToken,
+    airtableBaseId: config.airtableBaseId,
+    airtableTable: config.airtableTable
+  };
+  try{ localStorage.setItem(CHAVE_CFG, JSON.stringify(dados)); }catch(e){}
+}
+
+function carregarConfigSalvo(){
+  try{
+    const bruto = localStorage.getItem(CHAVE_CFG);
+    if(!bruto) return {};
+    return JSON.parse(bruto) || {};
+  }catch(e){ return {}; }
+}
+
+function toast(msg, tipo){
+  const box = $('#toasts');
+  const el = document.createElement('div');
+  el.className = 'toast ' + (tipo === 'erro' ? 'err' : 'ok');
+  el.innerHTML = (tipo === 'erro'
+      ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>'
+      : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>')
+    + '<span>' + escaparHTML(msg) + '</span>';
+  box.appendChild(el);
+  setTimeout(() => {
+    el.style.transition = 'opacity .3s, transform .3s';
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(8px)';
+    setTimeout(() => el.remove(), 320);
+  }, 3400);
+}
+
+function escaparHTML(txt){
+  return String(txt == null ? '' : txt).replace(/[&<>"']/g, c => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  }[c]));
+}
+
+function formatarHora(iso){
+  if(!iso) return '';
+  const d = new Date(iso);
+  if(isNaN(d.getTime())) return '';
+  return d.toLocaleString('pt-BR', {day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+}
+
+function iniciais(nome){
+  const partes = String(nome).trim().split(/\s+/).filter(Boolean);
+  if(!partes.length) return '?';
+  if(partes.length === 1) return partes[0].slice(0,2).toUpperCase();
+  return (partes[0][0] + partes[partes.length-1][0]).toUpperCase();
+}
+
+function definirStatus(texto, estado){
+  const linha = $('#status-linha');
+  linha.className = 'status-line' + (estado ? ' ' + estado : '');
+  $('#status-texto').textContent = texto;
+}
+
+/* ==================================================================
+   CAMADA DE DADOS - 3 modos
+   ================================================================== */
+const Dados = {
+  demo: {
+    async listar(){
+      try{
+        const bruto = localStorage.getItem(CHAVE_LISTA);
+        return bruto ? JSON.parse(bruto) : [];
+      }catch(e){ return []; }
+    },
+    async inserir(nome, observacao){
+      const lista = await this.listar();
+      const pessoa = {
+        id: 'demo_' + Date.now() + '_' + Math.random().toString(36).slice(2,7),
+        nome, observacao: observacao || '',
+        status: 'pendente',
+        criado_em: new Date().toISOString(),
+        pago_em: ''
+      };
+      lista.push(pessoa);
+      localStorage.setItem(CHAVE_LISTA, JSON.stringify(lista));
+      return pessoa;
+    },
+    async atualizar(id, mudancas){
+      const lista = await this.listar();
+      const p = lista.find(x => x.id === id);
+      if(p) Object.assign(p, mudancas);
+      localStorage.setItem(CHAVE_LISTA, JSON.stringify(lista));
+      return lista;
+    },
+    async remover(id){
+      const lista = (await this.listar()).filter(x => x.id !== id);
+      localStorage.setItem(CHAVE_LISTA, JSON.stringify(lista));
+      return lista;
+    },
+    async limpar(){
+      localStorage.removeItem(CHAVE_LISTA);
+      return [];
+    }
+  },
+
+  sheets: {
+    async req(dados){
+      const resp = await fetch(config.appsScriptUrl, {
+        method: dados ? 'POST' : 'GET',
+        headers: dados ? {'Content-Type':'text/plain;charset=utf-8'} : {},
+        body: dados ? JSON.stringify(dados) : undefined,
+        redirect: 'follow'
+      });
+      const texto = await resp.text();
+      let json;
+      try{ json = JSON.parse(texto); }
+      catch(e){ throw new Error('Resposta invalida do Apps Script. confera a URL /exec.'); }
+      if(!json.ok) throw new Error(json.erro || 'Erro no Apps Script.');
+      return json;
+    },
+    async listar(){
+      const r = await this.req(null);
+      return r.pessoas || [];
+    },
+    async inserir(nome, observacao){
+      const r = await this.req({acao:'inserir', nome, observacao});
+      return r.pessoa;
+    },
+    async atualizar(id, mudancas){
+      const r = await this.req({
+        acao: 'mudar_status',
+        id,
+        status: mudancas.status,
+        senha: config.adminSenha
+      });
+      return r.pessoas || [];
+    },
+    async remover(id){
+      const r = await this.req({acao:'remover', id, senha: config.adminSenha});
+      return r.pessoas || [];
+    },
+    async limpar(){
+      const r = await this.req({acao:'limpar', senha: config.adminSenha});
+      return r.pessoas || [];
+    }
+  },
+
+  airtable: {
+    url(){
+      const base = String(config.airtableBaseId || '').trim();
+      const tabela = encodeURIComponent(String(config.airtableTable || 'Passageiros').trim());
+      return 'https://api.airtable.com/v0/' + encodeURIComponent(base) + '/' + tabela;
+    },
+    headers(){
+      return {
+        'Authorization': 'Bearer ' + String(config.airtableToken || '').trim(),
+        'Content-Type': 'application/json'
+      };
+    },
+    mapear(rec){
+      const f = rec.fields || {};
+      return {
+        id: rec.id,
+        nome: f.nome || '',
+        observacao: f.observacao || '',
+        status: f.status || 'pendente',
+        criado_em: f.criado_em || rec.createdTime || '',
+        pago_em: f.pago_em || ''
+      };
+    },
+    async listar(){
+      const r = await fetch(this.url(), {headers: this.headers()});
+      if(!r.ok) throw new Error('Airtable: nao deu para ler (token ou Base ID errado).');
+      const j = await r.json();
+      return (j.records || []).map(this.mapear.bind(this));
+    },
+    async inserir(nome, observacao){
+      const r = await fetch(this.url(), {
+        method: 'POST',
+        headers: this.headers(),
+        body: JSON.stringify({
+          records: [{fields: {
+            nome,
+            observacao: observacao || '',
+            status: 'pendente',
+            criado_em: new Date().toISOString()
+          }}]
+        })
+      });
+      if(!r.ok) throw new Error('Airtable: nao deu para inserir.');
+      const j = await r.json();
+      return this.mapear(j.records[0]);
+    },
+    async atualizar(id, mudancas){
+      const campos = {status: mudancas.status};
+      if(mudancas.status === 'pago') campos.pago_em = new Date().toISOString();
+      const r = await fetch(this.url() + '/' + encodeURIComponent(id), {
+        method: 'PATCH',
+        headers: this.headers(),
+        body: JSON.stringify({fields: campos})
+      });
+      if(!r.ok) throw new Error('Airtable: nao deu para atualizar.');
+      return this.listar();
+    },
+    async remover(id){
+      const r = await fetch(this.url() + '/' + encodeURIComponent(id), {
+        method: 'DELETE', headers: this.headers()
+      });
+      if(!r.ok) throw new Error('Airtable: nao deu para remover.');
+      return this.listar();
+    },
+    async limpar(){
+      const lista = await this.listar();
+      for(const p of lista){
+        await fetch(this.url() + '/' + encodeURIComponent(p.id), {
+          method: 'DELETE', headers: this.headers()
+        });
+      }
+      return [];
+    }
+  }
+};
+
+function camadaAtual(){
+  if(modoAtual === 'sheets' && config.appsScriptUrl) return Dados.sheets;
+  if(modoAtual === 'airtable' && config.airtableToken && config.airtableBaseId) return Dados.airtable;
+  return Dados.demo;
+}
+
+function rotuloModo(){
+  if(modoAtual === 'sheets' && config.appsScriptUrl) return 'Google Sheets (gravado de verdade)';
+  if(modoAtual === 'airtable' && config.airtableToken && config.airtableBaseId) return 'Airtable (gravado de verdade)';
+  return 'Modo demonstracao - dados so neste navegador';
+}
+
+/* ==================================================================
+   RENDER
+   ================================================================== */
+function render(){
+  const lista = $('#people-list');
+
+  const total = pessoas.length;
+  const pagos = pessoas.filter(p => p.status === 'pago').length;
+  const pend = total - pagos;
+
+  $('#stat-total').textContent = total;
+  $('#stat-pago').textContent = pagos;
+  $('#stat-pend').textContent = pend;
+  $('#progress-fill').style.width = total ? (pagos/total*100) + '%' : '0%';
+
+  if(!total){
+    lista.innerHTML =
+      '<li class="empty">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' +
+          '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg>' +
+        '<div>Ninguem na lista ainda. Seja a primeira pessoa!</div>' +
+      '</li>';
+    $('#lista-sub').textContent = 'Quem ja entrou na lista';
+    return;
+  }
+
+  $('#lista-sub').textContent = total + (total === 1 ? ' pessoa na lista' : ' pessoas na lista');
+
+  const iconePago = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';
+  const iconePendente = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>';
+
+  lista.innerHTML = pessoas.map(p => {
+    const pago = p.status === 'pago';
+    const hora = formatarHora(pago && p.pago_em ? p.pago_em : p.criado_em);
+    const obs = p.observacao ? '<div class="person-time">' + escaparHTML(p.observacao) + '</div>' : '';
+    const acoes = adminLiberado ? (
+      '<div class="person-actions">' +
+        '<button type="button" class="btn btn-line btn-sm" data-acao="' + (pago ? 'pendente' : 'pago') + '" data-id="' + escaparHTML(p.id) + '">' +
+          (pago ? 'Voltar a pendente' : 'Marcar pago') +
+        '</button>' +
+        '<button type="button" class="btn btn-line btn-sm" data-acao="remover" data-id="' + escaparHTML(p.id) + '" title="Remover">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>' +
+        '</button>' +
+      '</div>'
+    ) : '';
+
+    return '<li class="person' + (pago ? ' pago' : '') + '">' +
+      '<div class="avatar">' + escaparHTML(iniciais(p.nome)) + '</div>' +
+      '<div class="person-info">' +
+        '<div class="person-name">' + escaparHTML(p.nome) + '</div>' +
+        '<div class="person-time">' + (hora ? (pago ? 'pago em ' : 'inscrito em ') + hora : '') + '</div>' +
+        obs +
+      '</div>' +
+      '<span class="pill ' + (pago ? 'pill-pag' : 'pill-pen') + '">' +
+        '<span class="dot"></span>' + (pago ? 'Pago' : 'Pendente') +
+      '</span>' +
+      acoes +
+    '</li>';
+  }).join('');
+
+  if(adminLiberado){
+    lista.querySelectorAll('button[data-acao]').forEach(btn => {
+      btn.addEventListener('click', () => acaoAdmin(btn.dataset.acao, btn.dataset.id));
+    });
+  }
+}
+
+/* ==================================================================
+   OPERACOES
+   ================================================================== */
+async function carregarLista(silencioso){
+  if(!silencioso) definirStatus('Atualizando lista...', 'busy');
+  try{
+    pessoas = await camadaAtual().listar();
+    render();
+    definirStatus(rotuloModo(), modoAtual === 'demo' ? '' : '');
+  }catch(e){
+    pessoas = [];
+    render();
+    definirStatus('Erro: ' + e.message, 'off');
+    if(!silencioso) toast(e.message, 'erro');
+  }
+}
+
+async function inserirPessoa(nome, observacao){
+  const btn = $('#btn-inserir');
+  btn.disabled = true;
+  try{
+    const p = await camadaAtual().inserir(nome, observacao);
+    pessoas = await camadaAtual().listar();
+    render();
+    toast(p ? (p.nome + ' entrou na lista!') : 'Nome adicionado!', 'ok');
+    return true;
+  }catch(e){
+    toast(e.message, 'erro');
+    return false;
+  }finally{
+    btn.disabled = false;
+  }
+}
+
+async function acaoAdmin(acao, id){
+  const camada = camadaAtual();
+  try{
+    if(acao === 'pago' || acao === 'pendente'){
+      pessoas = await camada.atualizar(id, {status: acao});
+      toast(acao === 'pago' ? 'Pagamento confirmado.' : 'Voltado para pendente.', 'ok');
+    }else if(acao === 'remover'){
+      if(!confirm('Remover essa pessoa da lista?')) return;
+      pessoas = await camada.remover(id);
+      toast('Pessoa removida.', 'ok');
+    }
+    render();
+  }catch(e){
+    toast(e.message, 'erro');
+  }
+}
+
+function exportarCSV(){
+  if(!pessoas.length){ toast('Nada para exportar ainda.', 'erro'); return; }
+  const linhas = [['nome','status','observacao','criado_em','pago_em']];
+  pessoas.forEach(p => linhas.push([p.nome, p.status, p.observacao || '', p.criado_em || '', p.pago_em || '']));
+  const csv = linhas.map(l => l.map(c => '"' + String(c).replace(/"/g,'""') + '"').join(';')).join('\n');
+  const blob = new Blob(['\ufeff' + csv], {type:'text/csv;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'lista-onibus-baile-cidinho.csv';
+  a.click();
+  URL.revokeObjectURL(a.href);
+  toast('CSV gerado.', 'ok');
+}
+
+/* ==================================================================
+   EVENTOS
+   ================================================================== */
+$('#form-inserir').addEventListener('submit', async e => {
+  e.preventDefault();
+  const nome = $('#input-nome').value.trim();
+  const obs = $('#input-obs').value.trim();
+  if(!nome){ toast('Digite seu nome.', 'erro'); return; }
+  const ok = await inserirPessoa(nome, obs);
+  if(ok){
+    $('#input-nome').value = '';
+    $('#input-obs').value = '';
+    $('#input-nome').focus();
+  }
+});
+
+$('#admin-toggle').addEventListener('click', () => {
+  const p = $('#admin-panel');
+  const aberto = p.classList.toggle('open');
+  $('#admin-toggle').setAttribute('aria-expanded', aberto ? 'true' : 'false');
+  if(aberto) $('#input-senha').focus();
+});
+
+$('#btn-desbloquear').addEventListener('click', () => {
+  const senha = $('#input-senha').value;
+  if(senha !== config.adminSenha){
+    toast('Senha incorreta.', 'erro');
+    $('#input-senha').value = '';
+    return;
+  }
+  adminLiberado = true;
+  $('#admin-locked').style.display = 'none';
+  $('#admin-unlocked').style.display = 'block';
+  $('#input-senha').value = '';
+  toast('Area do administrador liberada.', 'ok');
+  render();
+});
+
+$('#input-senha').addEventListener('keydown', e => {
+  if(e.key === 'Enter') $('#btn-desbloquear').click();
+});
+
+$('#btn-bloquear').addEventListener('click', () => {
+  adminLiberado = false;
+  $('#admin-locked').style.display = 'block';
+  $('#admin-unlocked').style.display = 'none';
+  render();
+});
+
+$('#btn-exportar').addEventListener('click', exportarCSV);
+
+$('#btn-atualizar').addEventListener('click', () => carregarLista(false));
+
+$('#btn-limpar').addEventListener('click', async () => {
+  if(!confirm('Apagar TODA a lista de passageiros?')) return;
+  try{
+    pessoas = await camadaAtual().limpar();
+    render();
+    toast('Lista limpa.', 'ok');
+  }catch(e){ toast(e.message, 'erro'); }
+});
+
+/* --------- Configuracao de modo --------- */
+document.querySelectorAll('.mode-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const modo = btn.dataset.mode;
+    document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b === btn));
+    $('#modo-sheets').style.display = modo === 'sheets' ? 'block' : 'none';
+    $('#modo-airtable').style.display = modo === 'airtable' ? 'block' : 'none';
+  });
+});
+
+$('#btn-salvar-sheets').addEventListener('click', async () => {
+  const url = $('#cfg-sheets-url').value.trim();
+  if(!url){ toast('Cole a URL do Apps Script.', 'erro'); return; }
+  config.appsScriptUrl = url;
+  config.modo = 'sheets';
+  modoAtual = 'sheets';
+  salvarConfigSalvo();
+  await carregarLista(false);
+  toast('Google Sheets conectado!', 'ok');
+});
+
+$('#btn-salvar-airtable').addEventListener('click', async () => {
+  const token = $('#cfg-at-token').value.trim();
+  const base = $('#cfg-at-base').value.trim();
+  if(!token || !base){ toast('Preencha token e Base ID.', 'erro'); return; }
+  config.airtableToken = token;
+  config.airtableBaseId = base;
+  config.airtableTable = $('#cfg-at-table').value.trim() || 'Passageiros';
+  config.modo = 'airtable';
+  modoAtual = 'airtable';
+  salvarConfigSalvo();
+  await carregarLista(false);
+  toast('Airtable conectado!', 'ok');
+});
+
+/* ==================================================================
+   BOOT
+   ================================================================== */
+(async function iniciar(){
+  // Restauro o modo salvo
+  if(config.modo && config.modo !== 'demo'){
+    modoAtual = config.modo;
+    document.querySelectorAll('.mode-btn').forEach(b =>
+      b.classList.toggle('active', b.dataset.mode === config.modo));
+    $('#modo-sheets').style.display = config.modo === 'sheets' ? 'block' : 'none';
+    $('#modo-airtable').style.display = config.modo === 'airtable' ? 'block' : 'none';
+    if(config.appsScriptUrl) $('#cfg-sheets-url').value = config.appsScriptUrl;
+    if(config.airtableToken) $('#cfg-at-token').value = config.airtableToken;
+    if(config.airtableBaseId) $('#cfg-at-base').value = config.airtableBaseId;
+    if(config.airtableTable) $('#cfg-at-table').value = config.airtableTable;
+  }else{
+    document.querySelector('.mode-btn[data-mode="demo"]').classList.add('active');
+  }
+
+  await carregarLista(true);
+
+  // Refresh automatico
+  timerRefresh = setInterval(() => {
+    if(!document.hidden) carregarLista(true);
+  }, config.intervaloRefresh);
+})();
+</script>
+</body>
+</html>
