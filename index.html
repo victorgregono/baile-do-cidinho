@@ -452,6 +452,182 @@
 </head>
 <body>
 
+<!-- ===================== ANIMAÇÃO BODE QUEBRANDO TELA ===================== -->
+<div id="bode-crash-container" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;background:rgba(0,0,0,0.1);display:none;pointer-events:none;">
+  <canvas id="bode-canvas" style="display:block;width:100%;height:100%;"></canvas>
+</div>
+
+<script>
+  // Animação do bode quebrando a tela ao carregar
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      iniciarAnimacaoBode();
+    }, 300);
+  });
+
+  function iniciarAnimacaoBode() {
+    const container = document.getElementById('bode-crash-container');
+    const canvas = document.getElementById('bode-canvas');
+    container.style.display = 'block';
+
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let animacaoAtiva = true;
+    let progresso = 0;
+    const duracao = 800; // duração da animação em ms
+    let tempoInicio = Date.now();
+
+    // Array de coordenadas para criar o efeito de vidro quebrado
+    const rachaduras = [];
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+
+    // Gerar padrão de rachaduras
+    function gerarRachaduras() {
+      const numRachaduras = 12;
+      for (let i = 0; i < numRachaduras; i++) {
+        const angulo = (i / numRachaduras) * Math.PI * 2;
+        const comprimento = 300 + Math.random() * 200;
+        rachaduras.push({
+          angulo: angulo,
+          comprimento: comprimento,
+          segmentos: Math.floor(Math.random() * 5) + 3
+        });
+      }
+    }
+
+    // Desenhar o bode (forma simplificada em 3D)
+    function desenharBode(x, y, escala, rotacao) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(rotacao);
+      ctx.scale(escala, escala);
+
+      // Corpo (elipse)
+      ctx.fillStyle = '#8B5A3C';
+      ctx.beginPath();
+      ctx.ellipse(0, 0, 80, 50, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#654321';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // Cabeça
+      ctx.fillStyle = '#A0622F';
+      ctx.beginPath();
+      ctx.ellipse(70, -20, 35, 40, 0.2, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+
+      // Chifres
+      ctx.strokeStyle = '#3D2817';
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      ctx.moveTo(85, -50);
+      ctx.quadraticCurveTo(95, -70, 100, -60);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(95, -50);
+      ctx.quadraticCurveTo(115, -70, 120, -60);
+      ctx.stroke();
+
+      // Olhos
+      ctx.fillStyle = '#000';
+      ctx.beginPath();
+      ctx.arc(80, -25, 5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(95, -30, 5, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Pernas
+      ctx.strokeStyle = '#654321';
+      ctx.lineWidth = 3;
+      for (let i = -1; i <= 1; i += 2) {
+        ctx.beginPath();
+        ctx.moveTo(i * 40, 40);
+        ctx.lineTo(i * 40, 80);
+        ctx.stroke();
+      }
+
+      ctx.restore();
+    }
+
+    // Desenhar rachaduras de vidro
+    function desenharRachaduras(progresso) {
+      ctx.strokeStyle = `rgba(200, 200, 200, ${0.6 * progresso})`;
+      ctx.lineWidth = 2;
+
+      rachaduras.forEach(rachadura => {
+        const comprimentoAtual = rachadura.comprimento * progresso;
+
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY);
+
+        let x = centerX + Math.cos(rachadura.angulo) * comprimentoAtual;
+        let y = centerY + Math.sin(rachadura.angulo) * comprimentoAtual;
+
+        ctx.lineTo(x, y);
+        ctx.stroke();
+
+        // Rachaduras secundárias
+        for (let i = 0; i < rachadura.segmentos; i++) {
+          const ramificacao = Math.random() * 0.4 * comprimentoAtual;
+          const xRam = x + Math.cos(rachadura.angulo + 0.3) * ramificacao;
+          const yRam = y + Math.sin(rachadura.angulo + 0.3) * ramificacao;
+
+          ctx.beginPath();
+          ctx.moveTo(x, y);
+          ctx.lineTo(xRam, yRam);
+          ctx.stroke();
+        }
+      });
+    }
+
+    // Animar
+    function animar() {
+      const agora = Date.now();
+      const decorrido = agora - tempoInicio;
+      progresso = Math.min(decorrido / duracao, 1);
+
+      // Limpar canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Desenhar fundo com efeito de impacto
+      if (progresso < 1) {
+        const opacidade = (1 - progresso) * 0.15;
+        ctx.fillStyle = `rgba(255, 100, 100, ${opacidade})`;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+      }
+
+      // Desenhar rachaduras
+      desenharRachaduras(progresso);
+
+      // Desenhar bode entrando de fora para dentro
+      const entradaBode = Math.max(-200, -200 + (progresso * 450));
+      const escala = 0.5 + progresso * 0.5;
+      const rotacao = progresso * 0.3;
+
+      desenharBode(entradaBode, canvas.height * 0.6, escala, rotacao);
+
+      // Continuar animação
+      if (progresso < 1) {
+        requestAnimationFrame(animar);
+      } else {
+        // Remover container após animação
+        setTimeout(() => {
+          container.style.display = 'none';
+        }, 500);
+      }
+    }
+
+    gerarRachaduras();
+    animar();
+  }
+</script>
+
 <!-- ===================== PROPAGANDA ===================== -->
 <header class="hero">
   <div class="wrap hero-inner">
