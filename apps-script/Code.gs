@@ -22,7 +22,7 @@
  */
 
 /** Cole aqui o ID da planilha (aparece na URL: /spreadsheets/d/ID_AQUI/edit). */
-var ID_DA_PLANILHA = '';
+var ID_DA_PLANILHA = '1QI8LNH8uzsqAID7iSeZTCobMFLwStJQdhpkJbVsvpm0';
 
 /** Cabecalho da aba Passageiros. */
 var CABECALHO = ['nome', 'status', 'criado_em', 'id', 'pago_em'];
