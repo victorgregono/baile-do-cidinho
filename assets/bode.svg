@@ -1,0 +1,34 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .bode-body { fill: #4a4a4a; }
+      .bode-chifre { fill: #2a2a2a; stroke: #000; stroke-width: 2; }
+      .bode-olho { fill: #ff0000; }
+      .bode-pupila { fill: #000000; }
+    </style>
+  </defs>
+  
+  <!-- Cabeça -->
+  <ellipse cx="200" cy="180" rx="100" ry="120" class="bode-body"/>
+  
+  <!-- Chifre esquerdo -->
+  <path d="M 140 120 Q 80 80 60 40 Q 50 10 70 5" class="bode-chifre" stroke-width="20"/>
+  
+  <!-- Chifre direito -->
+  <path d="M 260 120 Q 320 80 340 40 Q 350 10 330 5" class="bode-chifre" stroke-width="20"/>
+  
+  <!-- Olho esquerdo -->
+  <circle cx="160" cy="160" r="18" class="bode-olho"/>
+  <circle cx="160" cy="160" r="10" class="bode-pupila"/>
+  
+  <!-- Olho direito -->
+  <circle cx="240" cy="160" r="18" class="bode-olho"/>
+  <circle cx="240" cy="160" r="10" class="bode-pupila"/>
+  
+  <!-- Barba -->
+  <path d="M 180 280 L 170 310 M 200 290 L 200 320 M 220 280 L 230 310" stroke="#2a2a2a" stroke-width="8" fill="none" stroke-linecap="round"/>
+  
+  <!-- Sobrancelhas malvadas -->
+  <path d="M 130 130 Q 160 110 180 120" stroke="#000" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M 270 130 Q 240 110 220 120" stroke="#000" stroke-width="6" fill="none" stroke-linecap="round"/>
+</svg>
