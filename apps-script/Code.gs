@@ -8,7 +8,10 @@
  *  1. Crie a planilha: https://sheets.new
  *  2. Menu > Extensoes > Apps Script
  *  3. Cole TODO este codigo em Code.gs e salve (Ctrl+S)
- *  4. Altere a SENHA_ADM abaixo (e o ID_DA_PLANILHA, se usar)
+ *  4. Defina a senha do admin SEM colocar no codigo:
+ *     Configuracoes do projeto (engrenagem) > Propriedades do script >
+ *     Adicionar propriedade: nome = SENHA_ADM, valor = sua senha
+ *     (e o ID_DA_PLANILHA, se usar)
  *  5. Clique em "Implantar" > "Nova implantacao" > tipo: "Web app"
  *     - Executar como: "Eu" (a propria conta)
  *     - Quem pode acessar: "Qualquer pessoa"
@@ -20,9 +23,6 @@
 
 /** Cole aqui o ID da planilha (aparece na URL: /spreadsheets/d/ID_AQUI/edit). */
 var ID_DA_PLANILHA = '';
-
-/** Senha do administrador. TROQUE ISSO. */
-var SENHA_ADM = 'cidinho2026';
 
 /** Cabecalho da aba Passageiros. */
 var CABECALHO = ['nome', 'status', 'criado_em', 'id', 'pago_em'];
@@ -44,13 +44,19 @@ function doGet(e) {
 function doPost(e) {
   var dados = lerJson(e);
 
+  if (dados.acao === 'login') {
+    return senhaValida(dados.senha)
+      ? responder({ ok: true, acao: 'login' })
+      : responder({ ok: false, erro: 'Senha incorreta.' });
+  }
+
   // Acoes que alteram status exigem a senha do administrador.
   var precisaSenha = dados.acao === 'marcar_pago'
                   || dados.acao === 'mudar_status'
                   || dados.acao === 'remover'
                   || dados.acao === 'limpar';
 
-  if (precisaSenha && dados.senha !== SENHA_ADM) {
+  if (precisaSenha && !senhaValida(dados.senha)) {
     return responder({ ok: false, erro: 'Senha do administrador invalida.' });
   }
 
@@ -135,9 +141,17 @@ function abaConfig() {
     aba.appendRow(['chave', 'valor']);
     aba.appendRow(['evento', 'Baile do MC Cidinho']);
     aba.appendRow(['data', '05/12']);
-    aba.appendRow(['senha', SENHA_ADM]);
   }
   return aba;
+}
+
+/**
+ * Compara a senha enviada com a propriedade SENHA_ADM do script.
+ * Se a propriedade nao estiver definida, nenhuma senha e aceita.
+ */
+function senhaValida(senha) {
+  var esperada = PropertiesService.getScriptProperties().getProperty('SENHA_ADM');
+  return !!esperada && String(senha || '') === esperada;
 }
 
 function pegarConfig(chave) {

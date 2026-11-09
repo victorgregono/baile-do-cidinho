@@ -492,7 +492,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           Garantir meu lugar no onibus
         </a>
-        <a href="#config" class="btn btn-ghost">Como publicar (de graça)</a>
+        
       </div>
     </div>
 
@@ -595,7 +595,7 @@
               <ol>
                 <li>Crie a planilha em <code>https://sheets.new</code></li>
                 <li>Abra <b>Extensoes &gt; Apps Script</b> e cole o arquivo <code>Code.gs</code> que veio junto desta pagina</li>
-                <li>Troque a senha do admin em <code>SENHA_ADM</code></li>
+                <li>Em <b>Configuracoes do projeto &gt; Propriedades do script</b>, adicione <code>SENHA_ADM</code> com a senha do admin</li>
                 <li><b>Implantar &gt; Nova implantacao &gt; Web app</b> &mdash; Executar como <i>Eu</i>, acesso <i>Qualquer pessoa</i></li>
                 <li>Copie a URL que termina em <code>/exec</code> e cole abaixo</li>
               </ol>
@@ -749,9 +749,6 @@ const CONFIG = {
   airtableBaseId: '',
   airtableTable: 'Passageiros',
 
-  // Senha do administrador
-  adminSenha: 'cidinho2026',
-
   // Quanto tempo entre atualizacoes automaticas da lista (ms)
   intervaloRefresh: 20000
 };
@@ -765,6 +762,7 @@ const CHAVE_LISTA = 'baile_cidinho_lista_v1';
 let config = Object.assign({}, CONFIG, carregarConfigSalvo());
 let pessoas = [];
 let adminLiberado = false;
+let senhaAdmin = '';
 let modoAtual = config.modo;
 lettimerRefresh = null;
 
@@ -900,21 +898,24 @@ const Dados = {
       const r = await this.req({acao:'inserir', nome, observacao});
       return r.pessoa;
     },
+    async login(senha){
+      await this.req({acao:'login', senha});
+    },
     async atualizar(id, mudancas){
       const r = await this.req({
         acao: 'mudar_status',
         id,
         status: mudancas.status,
-        senha: config.adminSenha
+        senha: senhaAdmin
       });
       return r.pessoas || [];
     },
     async remover(id){
-      const r = await this.req({acao:'remover', id, senha: config.adminSenha});
+      const r = await this.req({acao:'remover', id, senha: senhaAdmin});
       return r.pessoas || [];
     },
     async limpar(){
-      const r = await this.req({acao:'limpar', senha: config.adminSenha});
+      const r = await this.req({acao:'limpar', senha: senhaAdmin});
       return r.pessoas || [];
     }
   },
@@ -1162,13 +1163,21 @@ $('#admin-toggle').addEventListener('click', () => {
   if(aberto) $('#input-senha').focus();
 });
 
-$('#btn-desbloquear').addEventListener('click', () => {
+$('#btn-desbloquear').addEventListener('click', async () => {
   const senha = $('#input-senha').value;
-  if(senha !== config.adminSenha){
-    toast('Senha incorreta.', 'erro');
+  if(!senha) return;
+  if(modoAtual !== 'sheets'){
+    toast('A area do administrador exige o modo Sheets (servidor).', 'erro');
+    return;
+  }
+  try{
+    await Dados.sheets.login(senha);
+  }catch(e){
+    toast(e.message, 'erro');
     $('#input-senha').value = '';
     return;
   }
+  senhaAdmin = senha;
   adminLiberado = true;
   $('#admin-locked').style.display = 'none';
   $('#admin-unlocked').style.display = 'block';
@@ -1183,6 +1192,7 @@ $('#input-senha').addEventListener('keydown', e => {
 
 $('#btn-bloquear').addEventListener('click', () => {
   adminLiberado = false;
+  senhaAdmin = '';
   $('#admin-locked').style.display = 'block';
   $('#admin-unlocked').style.display = 'none';
   render();
