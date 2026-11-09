@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 200 250" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .bode-dark { fill: #1a1a1a; }
+      .bode-light { fill: #4a4a4a; }
+      .eye-red { fill: #cc0000; }
+      .horn-dark { fill: #0a0a0a; }
+    </style>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="200" height="250" fill="#0f0f0f"/>
+  
+  <!-- Corpo -->
+  <ellipse cx="100" cy="140" rx="60" ry="70" class="bode-light"/>
+  
+  <!-- Cabeça -->
+  <circle cx="100" cy="80" r="50" class="bode-dark"/>
+  
+  <!-- Orelhas -->
+  <ellipse cx="75" cy="40" rx="18" ry="35" class="bode-light" transform="rotate(-25 75 40)"/>
+  <ellipse cx="125" cy="40" rx="18" ry="35" class="bode-light" transform="rotate(25 125 40)"/>
+  
+  <!-- Chifres malévolos -->
+  <path d="M 70 25 Q 50 0 40 -20" stroke="#000" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M 130 25 Q 150 0 160 -20" stroke="#000" stroke-width="6" fill="none" stroke-linecap="round"/>
+  
+  <!-- Olhos vermelhos -->
+  <circle cx="85" cy="70" r="8" class="eye-red"/>
+  <circle cx="115" cy="70" r="8" class="eye-red"/>
+  
+  <!-- Pupilas -->
+  <circle cx="85" cy="70" r="4" fill="#000"/>
+  <circle cx="115" cy="70" r="4" fill="#000"/>
+  
+  <!-- Nariz -->
+  <ellipse cx="100" cy="90" rx="8" ry="10" fill="#000"/>
+  
+  <!-- Barba -->
+  <path d="M 80 110 L 70 130" stroke="#2a2a2a" stroke-width="2" stroke-linecap="round"/>
+  <path d="M 100 115 L 100 135" stroke="#2a2a2a" stroke-width="2" stroke-linecap="round"/>
+  <path d="M 120 110 L 130 130" stroke="#2a2a2a" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Pentagrama (satânico) -->
+  <path d="M 100 150 L 110 165 L 104 173 L 96 173 L 90 165 Z" stroke="#cc0000" stroke-width="1.5" fill="none"/>
+</svg>
